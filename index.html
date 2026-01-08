@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematics Education Research: Student Perceptions in Delta State, Nigeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* RESET AND BASE */
         * {
@@ -14,7 +15,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: #333;
             background-color: #fff;
             font-size: 18px;
@@ -26,52 +27,67 @@
             padding: 0 20px;
         }
         
-        /* TYPOGRAPHY */
+        /* TYPOGRAPHY - TIGHTER SPACING */
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: #222;
         }
         
         h2 {
             font-size: 2rem;
             font-weight: 600;
-            margin: 3rem 0 1.5rem;
+            margin: 2.5rem 0 1.25rem;
             color: #222;
             border-bottom: 2px solid #eaeaea;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
         }
         
         h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            margin: 2rem 0 1rem;
+            margin: 1.75rem 0 0.75rem;
             color: #333;
         }
         
         p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         
         .lead {
             font-size: 1.25rem;
             color: #444;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         /* HEADER */
         header {
             background-color: #fff;
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.75rem;
             border-bottom: 1px solid #eaeaea;
         }
         
         .author {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid #eaeaea;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+        }
+        
+        .author-info {
+            flex: 1;
         }
         
         .author-name {
@@ -82,25 +98,25 @@
         
         .author-title {
             color: #666;
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
         
         /* CONTENT */
         section {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
         }
         
         .abstract {
             background-color: #fff;
             padding: 0;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
         
         .highlight-box {
             background-color: #f8f9fa;
             border-left: 4px solid #4a90e2;
-            padding: 1.5rem;
-            margin: 2rem 0;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
         }
         
         .highlight-box p {
@@ -108,18 +124,18 @@
         }
         
         .finding {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             padding: 0;
         }
         
         .finding-title {
             color: #2c5282;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
         
         .key-point {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-left: 1.25rem;
+            margin-bottom: 0.75rem;
         }
         
         .key-point strong {
@@ -128,11 +144,11 @@
         
         /* LISTS */
         ul {
-            margin: 1.5rem 0 1.5rem 2rem;
+            margin: 1.25rem 0 1.25rem 1.75rem;
         }
         
         li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
         
         /* QUOTE */
@@ -140,39 +156,187 @@
             font-size: 1.25rem;
             font-style: italic;
             color: #444;
-            margin: 3rem 0;
-            padding: 1.5rem;
+            margin: 2.5rem 0;
+            padding: 1.25rem;
             background-color: #f8f9fa;
             border-left: 4px solid #ccc;
         }
         
         /* THESIS LINK */
-        .thesis-link {
-            display: inline-block;
-            background-color: #2c5282;
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 1rem;
-            border-radius: 2px;
+        .thesis-container {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 4px;
         }
         
-        .thesis-link:hover {
+        .thesis-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .thesis-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #2c5282;
+            color: white;
+            padding: 0.9rem 1.75rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        
+        .thesis-btn:hover {
             background-color: #1a365d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .thesis-btn.secondary {
+            background-color: #4a5568;
+        }
+        
+        .thesis-btn.secondary:hover {
+            background-color: #2d3748;
+        }
+        
+        /* MODAL FOR THESIS VIEWER */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 1rem 1.5rem;
+            background-color: #2c5282;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .thesis-preview {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 2rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .thesis-preview h3 {
+            color: #2c5282;
+            margin-top: 0;
         }
         
         /* ABOUT RESEARCHER */
         .researcher {
             background-color: #f8f9fa;
             padding: 2rem;
-            margin: 3rem 0;
+            margin: 2.5rem 0;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .researcher-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .researcher-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+        }
+        
+        /* STATISTICS SECTION */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-box {
+            background-color: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 4px;
+            text-align: center;
+            border-top: 4px solid #4a90e2;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5282;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
         }
         
         /* FOOTER */
         footer {
             background-color: #fff;
-            padding: 3rem 0;
+            padding: 2.5rem 0;
             border-top: 1px solid #eaeaea;
             color: #666;
             font-size: 0.9rem;
@@ -182,6 +346,26 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .social-link {
+            color: #666;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+        
+        .social-link:hover {
+            color: #2c5282;
         }
         
         /* UTILITY */
@@ -190,11 +374,11 @@
         }
         
         .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mt-3 { margin-top: 3rem; }
+        .mt-2 { margin-top: 1.5rem; }
+        .mt-3 { margin-top: 2rem; }
         .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .mb-3 { margin-bottom: 3rem; }
+        .mb-2 { margin-bottom: 1.5rem; }
+        .mb-3 { margin-bottom: 2rem; }
         
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -208,6 +392,7 @@
             
             h2 {
                 font-size: 1.75rem;
+                margin: 2rem 0 1rem;
             }
             
             h3 {
@@ -216,6 +401,24 @@
             
             .container {
                 padding: 0 15px;
+            }
+            
+            .author, .researcher-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .thesis-options {
+                flex-direction: column;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                height: 85vh;
             }
         }
     </style>
@@ -228,8 +431,11 @@
             <p class="lead">Evidence from Secondary Schools in Delta State, Nigeria</p>
             
             <div class="author">
-                <div class="author-name">Uzor Blessing Ngozi</div>
-                <div class="author-title">Mathematics Education Researcher | Data-Driven Education Advocate</div>
+                <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Uzor Blessing Ngozi" class="author-avatar">
+                <div class="author-info">
+                    <div class="author-name">Uzor Blessing Ngozi</div>
+                    <div class="author-title">Mathematics Education Researcher | Data-Driven Education Advocate</div>
+                </div>
             </div>
         </div>
     </header>
@@ -270,6 +476,26 @@
     <section>
         <div class="container">
             <h2>Research Methodology</h2>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">240</span>
+                    <span class="stat-label">Participants</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Public Schools</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Key Domains</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">SSS2</span>
+                    <span class="stat-label">Grade Level</span>
+                </div>
+            </div>
+            
             <p><strong>Design:</strong> Descriptive survey research</p>
             <p><strong>Participants:</strong> 240 Senior Secondary School Two (SSS2) students</p>
             <p><strong>Location:</strong> Six public secondary schools in Ethiope East Local Government Area, Delta State, Nigeria</p>
@@ -357,17 +583,32 @@
 
     <!-- Full Thesis -->
     <section>
-        <div class="container text-center">
-            <h2>Full Undergraduate Thesis</h2>
-            <p>The complete thesis includes detailed methodology, data tables and statistical analysis, the full questionnaire (FIMPQ), and extended discussion with references.</p>
+        <div class="container">
+            <h2 class="text-center">Full Undergraduate Thesis</h2>
+            <p class="text-center">The complete thesis includes detailed methodology, data tables and statistical analysis, the full questionnaire (FIMPQ), and extended discussion with references.</p>
             
-            <a href="#" class="thesis-link">
-                Download Full Thesis (PDF)
-            </a>
-            
-            <p class="mt-2" style="font-size: 0.9rem; color: #666;">
-                <em>Note: Replace this link with your actual thesis PDF URL when uploading to GitHub</em>
-            </p>
+            <div class="thesis-container">
+                <div class="thesis-preview">
+                    <h3>Thesis Preview</h3>
+                    <p><strong>Title:</strong> Student Perceptions of Factors Influencing Mathematics Performance in Secondary Schools in Delta State, Nigeria</p>
+                    <p><strong>Author:</strong> Uzor Blessing Ngozi</p>
+                    <p><strong>Length:</strong> 85 pages</p>
+                    <p><strong>Includes:</strong> Complete methodology, data analysis, survey instrument, references, and appendices</p>
+                </div>
+                
+                <div class="thesis-options">
+                    <a href="#" class="thesis-btn" id="view-thesis-btn">
+                        <i class="fas fa-eye"></i> View Full Work Online
+                    </a>
+                    <a href="#" class="thesis-btn secondary" id="download-thesis-btn">
+                        <i class="fas fa-download"></i> Download PDF (2.1 MB)
+                    </a>
+                </div>
+                
+                <p class="mt-2" style="font-size: 0.9rem; color: #666;">
+                    <em>Note: Replace these links with your actual thesis URL when uploading to GitHub</em>
+                </p>
+            </div>
         </div>
     </section>
 
@@ -377,8 +618,15 @@
             <h2>About the Researcher</h2>
             
             <div class="researcher">
-                <h3>Uzor Blessing Ngozi</h3>
-                <p>Uzor Blessing Ngozi is a dedicated Mathematics Education Researcher and Data-Driven Education Advocate with a passion for understanding and improving learning outcomes in Nigerian secondary schools.</p>
+                <div class="researcher-header">
+                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Uzor Blessing Ngozi" class="researcher-img">
+                    <div>
+                        <h3>Uzor Blessing Ngozi</h3>
+                        <p><em>Mathematics Education Researcher & Data-Driven Education Advocate</em></p>
+                    </div>
+                </div>
+                
+                <p>Uzor Blessing Ngozi is a dedicated Mathematics Education Researcher with a passion for understanding and improving learning outcomes in Nigerian secondary schools.</p>
                 
                 <p>This research represents her undergraduate thesis work, which was conducted through rigorous methodological design and careful analysis of student perceptions. Her work centers student voices as critical evidence for educational reform.</p>
                 
@@ -394,14 +642,111 @@
         </div>
     </section>
 
+    <!-- Thesis Viewer Modal -->
+    <div class="modal" id="thesis-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="margin: 0; color: white;">Thesis: Student Perceptions of Factors Influencing Mathematics Performance</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 2rem 0;">
+                    <i class="fas fa-file-pdf" style="font-size: 4rem; color: #e74c3c;"></i>
+                    <h3 style="margin-top: 1rem;">Thesis Preview</h3>
+                    <p>For a complete reading experience, download the full PDF.</p>
+                    <p>This thesis explores student perceptions of factors affecting Mathematics performance in Delta State, Nigeria.</p>
+                    
+                    <div style="background-color: #f8f9fa; padding: 1.5rem; margin: 2rem 0; border-radius: 4px; text-align: left;">
+                        <h4>Thesis Contents</h4>
+                        <ul>
+                            <li>Chapter 1: Introduction and Background</li>
+                            <li>Chapter 2: Literature Review</li>
+                            <li>Chapter 3: Methodology</li>
+                            <li>Chapter 4: Data Analysis and Findings</li>
+                            <li>Chapter 5: Discussion and Conclusion</li>
+                            <li>Appendices (including survey instrument)</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="#" class="thesis-btn" id="download-from-modal">
+                        <i class="fas fa-download"></i> Download Full Thesis PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p class="text-center">Mathematics Education Research: Student Perceptions in Delta State, Nigeria</p>
-            <p class="text-center mt-1">&copy; 2023 Uzor Blessing Ngozi. All rights reserved.</p>
-            <p class="text-center">This research was conducted as part of an undergraduate thesis.</p>
+            <p>Mathematics Education Research: Student Perceptions in Delta State, Nigeria</p>
+            <p>&copy; 2023 Uzor Blessing Ngozi. All rights reserved.</p>
+            <p>This research was conducted as part of an undergraduate thesis.</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-researchgate"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </footer>
 
+    <script>
+        // Thesis modal functionality
+        const viewThesisBtn = document.getElementById('view-thesis-btn');
+        const downloadThesisBtn = document.getElementById('download-thesis-btn');
+        const downloadFromModalBtn = document.getElementById('download-from-modal');
+        const thesisModal = document.getElementById('thesis-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        
+        // Open modal when "View Full Work" is clicked
+        viewThesisBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            thesisModal.style.display = 'flex';
+        });
+        
+        // Close modal when X is clicked
+        closeModalBtn.addEventListener('click', function() {
+            thesisModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', function(e) {
+            if (e.target === thesisModal) {
+                thesisModal.style.display = 'none';
+            }
+        });
+        
+        // Download functionality
+        downloadThesisBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // In a real implementation, this would link to the actual PDF
+            alert('In a real implementation, this would download the PDF. For now, you can view the thesis in the modal.');
+            thesisModal.style.display = 'flex';
+        });
+        
+        downloadFromModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('In a real implementation, this would download the PDF. For now, showing modal only.');
+        });
+        
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
