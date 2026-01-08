@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Education Research | Delta State, Nigeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ffffff;
+            --gray: #f8f9fa;
+            --text: #333333;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .author-info {
+            text-align: left;
+            border-left: 3px solid var(--secondary);
+            padding-left: 15px;
+        }
+        
+        .author-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .author-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Content Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .card {
+            background-color: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px var(--shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow-hover);
+        }
+        
+        .highlight {
+            background-color: #f0f7ff;
+            border-left: 5px solid var(--secondary);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+        }
+        
+        .highlight strong {
+            color: var(--primary);
+        }
+        
+        .abstract {
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        /* Findings Grid */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .finding-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--secondary);
+            height: 100%;
+        }
+        
+        .finding-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px var(--shadow-hover);
+        }
+        
+        .finding-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .finding-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Bullet List */
+        .bullet-list {
+            list-style-type: none;
+            margin: 25px 0;
+        }
+        
+        .bullet-list li {
+            padding: 10px 0 10px 35px;
+            position: relative;
+        }
+        
+        .bullet-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 25px;
+            height: 25px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Quote */
+        .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .quote:before, .quote:after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .quote:before {
+            top: 0;
+            left: 0;
+        }
+        
+        .quote:after {
+            bottom: -20px;
+            right: 0;
+        }
+        
+        /* Thesis Link */
+        .thesis-link {
+            display: inline-block;
+            background: linear-gradient(to right, var(--secondary), #2980b9);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
+            margin-top: 20px;
+        }
+        
+        .thesis-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(to right, #2980b9, var(--secondary));
+        }
+        
+        /* About Section */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            
+            .quote {
+                font-size: 1.2rem;
+                padding: 30px 20px;
+            }
+            
+            .author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-info {
+                border-left: none;
+                padding-left: 0;
+                text-align: center;
+                border-top: 2px solid var(--secondary);
+                padding-top: 15px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* Scroll progress */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary), #9b59b6);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="header-content">
+                <h1>Why Do Some Students Struggle in Mathematics?</h1>
+                <p class="subtitle">Evidence from Secondary Schools in Delta State, Nigeria</p>
+                
+                <div class="author">
+                    <div class="author-info">
+                        <div class="author-name">Uzor Blessing Ngozi</div>
+                        <div class="author-title">Mathematics Education Researcher | Data-Driven Education Advocate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Abstract Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Abstract</h2>
+            <div class="card animate">
+                <p class="abstract">
+                    Mathematics remains a gateway subject for science, technology, and economic participation, yet many Nigerian students continue to perform below expectations. Why do students in the same schools—and often the same classrooms—experience Mathematics so differently? This study explores that question by centering the voices of learners themselves. Drawing on survey data from 240 senior secondary school students in Ethiope East Local Government Area, Delta State, Nigeria, the research examines how students perceive the influence of parental education, teacher experience, teacher qualifications, socioeconomic background, and cultural-linguistic context on their academic performance. Findings show that teacher quality and family economic support are perceived as the most influential factors, while cultural background and parental occupation are viewed as far less determinative. These results challenge deficit-based narratives and highlight the need for equity-focused educational policy and teacher development.
+                </p>
+                <p class="highlight">
+                    <strong>A link to the full undergraduate thesis is provided for readers seeking detailed methodology, data tables, and analysis.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why This Study Matters Section -->
+    <section style="background-color: var(--gray);">
+        <div class="container">
+            <h2 class="section-title">Why This Study Matters</h2>
+            <div class="card animate">
+                <p>In Nigeria, poor performance in Mathematics is often explained in simple terms: <em>students are weak</em>, <em>parents are uneducated</em>, or <em>culture is the problem</em>.</p>
+                
+                <p>But these explanations rarely ask the most important question:</p>
+                
+                <div class="highlight" style="text-align: center; font-size: 1.3rem;">
+                    <strong>What do students themselves believe is shaping their learning?</strong>
+                </div>
+                
+                <p>This research takes student perception seriously—not as opinion, but as evidence. Students are the ones who experience classrooms daily, navigate family constraints, and interact directly with teachers. Understanding how they interpret these influences offers a grounded, human lens for improving Mathematics education.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Findings Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Key Findings</h2>
+            <div class="findings-grid">
+                <div class="finding-card animate">
+                    <div class="finding-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Teacher Quality Matters—A Lot</h3>
+                    <p>Students consistently identified <strong>teacher experience and professional qualification</strong> as major influences on their Mathematics performance. Experienced teachers were perceived as better at explaining concepts and managing classrooms.</p>
+                    <p>However, qualified teachers were <strong>not automatically seen as making students love Mathematics</strong>, highlighting a gap between instructional competence and student motivation.</p>
+                </div>
+                
+                <div class="finding-card animate">
+                    <div class="finding-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Family Income Shapes Opportunity</h3>
+                    <p>Students strongly associated <strong>low family income</strong> with difficulties in Mathematics learning. Key issues included inability to afford textbooks and learning materials, limited access to private study support, and stress caused by unmet basic needs.</p>
+                    <p>These findings reinforce that academic performance is not just about ability, but also about <strong>access and stability</strong>.</p>
+                </div>
+                
+                <div class="finding-card animate">
+                    <div class="finding-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Parental Education Helps—but Is Not Everything</h3>
+                    <p>Students perceived parental education as beneficial, especially when parents could assist with assignments, monitor school progress, and encourage academic effort.</p>
+                    <p>However, parental education alone was not viewed as determinative. Students from less-educated households did not automatically see themselves as disadvantaged.</p>
+                </div>
+                
+                <div class="finding-card animate">
+                    <div class="finding-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Culture Is Not the Villain</h3>
+                    <p>One of the most important findings is what students <strong>rejected</strong>. Most students disagreed that speaking local languages or Pidgin English at home causes poor academic performance.</p>
+                    <p>This challenges long-standing cultural-deficit narratives and suggests that students locate the problem in <strong>structural and instructional conditions</strong>, not in their identity or heritage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quote Section -->
+    <section style="background-color: var(--gray);">
+        <div class="container">
+            <div class="quote animate">
+                Students do not view themselves or their backgrounds as the problem. They point instead to unequal access to resources, differences in teacher preparation, and economic constraints that limit learning opportunities.
+            </div>
+        </div>
+    </section>
+    
+    <!-- Implications Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Implications for Education Policy and Practice</h2>
+            <div class="card animate">
+                <ul class="bullet-list">
+                    <li><strong>Teacher development programs</strong> should prioritize both content mastery and motivational pedagogy.</li>
+                    <li><strong>Equity-focused interventions</strong>—such as learning material support for low-income students—are critical.</li>
+                    <li><strong>Culturally responsive teaching</strong> should be encouraged as an asset-based approach.</li>
+                    <li>Policymakers must recognize that improving Mathematics performance requires addressing <strong>economic and institutional factors</strong>, not cultural stereotypes.</li>
+                    <li>Future research should combine perception data with achievement outcomes and use longitudinal designs.</li>
+                </ul>
+                
+                <p style="margin-top: 30px; font-size: 1.1rem;">
+                    Mathematics achievement is often treated as a purely academic problem. This study shows it is also a <strong>social and structural issue</strong>. When students speak, they tell a consistent story: quality teaching, economic support, and fair learning conditions matter more than culture or occupation. Listening to these voices is essential for building a more just and effective Mathematics education system in Nigeria.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Full Thesis Section -->
+    <section style="background-color: var(--primary); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Read the Full Undergraduate Thesis</h2>
+            <div class="card animate" style="text-align: center; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                    The full thesis includes detailed methodology, data tables and statistical analysis, the full questionnaire (FIMPQ), and extended discussion with references.
+                </p>
+                
+                <!-- Update this link with your actual thesis PDF URL -->
+                <a href="#" class="thesis-link">
+                    <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> Download Full Thesis (PDF)
+                </a>
+                
+                <p style="margin-top: 40px; opacity: 0.9; font-style: italic;">
+                    Note: Replace the link above with your actual thesis PDF URL when uploading to GitHub
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Researcher Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About the Researcher</h2>
+            <div class="about-container">
+                <div class="about-img animate">
+                    <!-- Placeholder for researcher image -->
+                    <div class="profile-img" style="background: linear-gradient(135deg, var(--secondary), var(--primary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
+                <div class="about-content animate">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 2rem;">Uzor Blessing Ngozi</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                        Uzor Blessing Ngozi is a dedicated Mathematics Education Researcher and Data-Driven Education Advocate with a passion for understanding and improving learning outcomes in Nigerian secondary schools.
+                    </p>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                        This research represents her undergraduate thesis work, which was conducted through rigorous methodological design and careful analysis of student perceptions. Her work centers student voices as critical evidence for educational reform.
+                    </p>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                        Her research interests include equity in education, teacher professional development, culturally responsive pedagogy, and the intersection of socioeconomic factors and academic achievement.
+                    </p>
+                    <div style="margin-top: 30px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">Research Focus Areas:</h4>
+                        <ul class="bullet-list">
+                            <li>Mathematics education in Nigerian secondary schools</li>
+                            <li>Student perception and educational outcomes</li>
+                            <li>Teacher quality and professional development</li>
+                            <li>Education policy and equity interventions</li>
+                            <li>Data-driven approaches to educational improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Mathematics Education Research</h3>
+                <p style="opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                    A research study exploring student perceptions of factors influencing Mathematics performance in secondary schools in Delta State, Nigeria.
+                </p>
+                
+                <div class="social-links">
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                    <a href="#" title="Academia"><i class="fas fa-graduation-cap"></i></a>
+                </div>
+                
+                <p class="copyright">
+                    &copy; 2023 Uzor Blessing Ngozi. All rights reserved.<br>
+                    This research was conducted as part of an undergraduate thesis.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with the 'animate' class
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsToAnimate = document.querySelectorAll('.card, .finding-card, .quote, .about-img, .about-content');
+            
+            elementsToAnimate.forEach(el => {
+                el.classList.remove('animate');
+                observer.observe(el);
+            });
+            
+            // Initially animate first elements
+            document.querySelectorAll('.animate').forEach(el => {
+                el.classList.add('animate');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
